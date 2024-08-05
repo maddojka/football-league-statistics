@@ -1,6 +1,7 @@
 package com.soroko.footballleaguestatistics.controller;
 
 
+import com.soroko.footballleaguestatistics.controller.feign.FootballLeagueClient;
 import com.soroko.footballleaguestatistics.entity.PlayerDTO;
 import com.soroko.footballleaguestatistics.entity.PlayerStatistics;
 import com.soroko.footballleaguestatistics.service.PlayerStatisticsService;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @RequestMapping("/api/playerstat")
 public class PlayerStatisticsController {
     PlayerStatisticsService playerStatisticsService;
+    FootballLeagueClient footballLeagueClient;
 
     @GetMapping("/all")
     public List<PlayerStatistics> getAllPlayerStatisticsFromDB() {
@@ -38,9 +40,10 @@ public class PlayerStatisticsController {
     }
 
     @PostMapping
-    public PlayerStatistics addPlayerStatistics(@RequestBody PlayerStatistics playerStatistics, PlayerDTO playerDTO) {
+    public PlayerStatistics addPlayerStatistics(@RequestBody PlayerStatistics playerStatistics, int id) {
+        PlayerDTO playerDto = footballLeagueClient.getPlayerById(id);
         playerStatistics.setId(UUID.randomUUID());
-        playerStatistics.setPlayer(playerDTO);
+        playerStatistics.setPlayer(playerDto);
         return playerStatisticsService.savePlayerStatistics(playerStatistics);
     }
 }
