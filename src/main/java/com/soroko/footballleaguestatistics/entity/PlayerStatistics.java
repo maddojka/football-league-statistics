@@ -9,43 +9,51 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
-@Entity
+@Document
 @Table(name = "player_statistics")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PlayerStatistics {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    UUID id;
 
     @PositiveOrZero(message = "Positive or zero value is required")
     @Column(name = "matches_played")
     int matchesPlayed;
 
     @PositiveOrZero(message = "Positive or zero value is required")
-    @Digits(integer=3, fraction=0, message="Invalid amount of goals")
+    @Digits(integer = 3, fraction = 0, message = "Invalid amount of goals")
     @Column(name = "goals_scored")
     int goalsScored;
 
     @PositiveOrZero(message = "Positive or zero value is required")
-    @Digits(integer=2, fraction=0, message="Invalid amount of yellow cards")
+    @Digits(integer = 2, fraction = 0, message = "Invalid amount of yellow cards")
     @Column(name = "yellow_cards")
     int yellowCards;
 
     @PositiveOrZero(message = "Positive or zero value is required")
-    @Digits(integer=2, fraction=0, message="Invalid amount of red cards")
+    @Digits(integer = 2, fraction = 0, message = "Invalid amount of red cards")
     @Column(name = "red_cards")
     int redCards;
 
     @PositiveOrZero(message = "Positive or zero value is required")
-    @Digits(integer=2, fraction=0, message="Invalid amount of submissions")
+    @Digits(integer = 2, fraction = 0, message = "Invalid amount of submissions")
     @Column(name = "submissions")
     int submissions;
 
-    @PositiveOrZero(message = "Positive or zero value is required")
+   /* @PositiveOrZero(message = "Positive or zero value is required")
     @Column(name = "player_id")
-    int player;
+    int player;*/
+
+    @OneToMany
+    @Indexed(unique = true)
+    PlayerDTO player;
 }

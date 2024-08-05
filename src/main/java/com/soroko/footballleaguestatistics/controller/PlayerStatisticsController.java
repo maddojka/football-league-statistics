@@ -1,23 +1,46 @@
 package com.soroko.footballleaguestatistics.controller;
 
 
+import com.soroko.footballleaguestatistics.entity.PlayerDTO;
+import com.soroko.footballleaguestatistics.entity.PlayerStatistics;
 import com.soroko.footballleaguestatistics.service.PlayerStatisticsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
+@RestController
+@RequestMapping("/api/playerstat")
 public class PlayerStatisticsController {
     PlayerStatisticsService playerStatisticsService;
 
-    public PlayerStatisticsController(PlayerStatisticsService playerStatisticsService) {
-        this.playerStatisticsService = playerStatisticsService;
+    @GetMapping("/all")
+    public List<PlayerStatistics> getAllPlayerStatisticsFromDB() {
+        return playerStatisticsService.getAllPlayerStatistics();
     }
 
-    @GetMapping("/playerstat")
-    public String teamstat(Model model) {
-        return null;
+    @GetMapping
+    public ResponseEntity<PlayerStatistics> getPlayerStatisticsByPlayer(@RequestParam PlayerDTO playerDTO) {
+
+        var playerStatistics = playerStatisticsService.getPlayerStatisticsByPlayer(playerDTO);
+        if (playerStatistics == null) {
+            return ResponseEntity
+                    .status(HttpStatusCode.valueOf(404))
+                    .build();
+        }
+        return new ResponseEntity<>(playerStatistics, HttpStatusCode.valueOf(200));
+    }
+
+    @PostMapping
+    public PlayerStatistics addPlayerStatistics(@RequestBody PlayerStatistics playerStatistics, PlayerDTO playerDTO) {
+        playerStatistics.setId(UUID.randomUUID());
+        playerStatistics.setPlayer(playerDTO);
+        return playerStatisticsService.savePlayerStatistics(playerStatistics);
     }
 }

@@ -1,10 +1,15 @@
 package com.soroko.footballleaguestatistics.repository;
 
 
+import com.soroko.footballleaguestatistics.entity.PlayerDTO;
 import com.soroko.footballleaguestatistics.entity.PlayerStatistics;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface PlayerStatisticsRepository extends JpaRepository<PlayerStatistics, Integer> {
+public interface PlayerStatisticsRepository extends MongoRepository<PlayerStatistics, UUID> {
+
+    PlayerStatistics findByPlayerDTO(PlayerDTO playerDTO);
 }

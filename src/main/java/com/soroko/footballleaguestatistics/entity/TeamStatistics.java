@@ -8,17 +8,21 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
-@Entity
+@Document
 @Table(name = "team_statistics")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TeamStatistics {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    UUID id;
 
     @NotNull(message = "Position is required")
     @NotBlank(message = "Position is required")
@@ -57,8 +61,11 @@ public class TeamStatistics {
     @Column(name = "points")
     int points;
 
-    @PositiveOrZero(message = "Positive or zero value is required")
+  /*  @PositiveOrZero(message = "Positive or zero value is required")
     @Column(name = "team_id")
-    int team;
+    int team;*/
 
+    @OneToMany
+    @Indexed(unique = true)
+    TeamDTO team;
 }
