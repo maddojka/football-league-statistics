@@ -1,7 +1,5 @@
 package com.soroko.footballleaguestatistics.dto;
 
-import java.util.UUID;
-
 /**
  * @author yuriy.soroko
  */

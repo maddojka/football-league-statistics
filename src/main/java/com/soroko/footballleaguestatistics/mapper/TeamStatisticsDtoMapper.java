@@ -11,6 +11,12 @@ import java.util.function.Function;
  */
 @Service
 public class TeamStatisticsDtoMapper implements Function<TeamStatistics, TeamStatisticsDto> {
+
+    /**
+     * This method represents teamStatistics form to teamStatisticsDto form
+     * @param teamStatistics the function argument to convert
+     * @return returns modified form
+     */
     @Override
     public TeamStatisticsDto apply(TeamStatistics teamStatistics) {
         return new TeamStatisticsDto(

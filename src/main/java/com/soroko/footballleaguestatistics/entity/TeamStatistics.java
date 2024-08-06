@@ -64,10 +64,6 @@ public class TeamStatistics {
     @Column(name = "points")
     int points;
 
-  /*  @PositiveOrZero(message = "Positive or zero value is required")
-    @Column(name = "team_id")
-    int team;*/
-
     @OneToMany
     @Indexed(unique = true)
     TeamDto team;

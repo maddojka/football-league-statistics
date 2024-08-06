@@ -9,15 +9,15 @@ import com.soroko.footballleaguestatistics.service.TeamStatisticsService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/teamstat")
@@ -28,11 +28,20 @@ public class TeamStatisticsController {
 
     FootballLeagueClient footballLeagueClient;
 
+    /**
+     * Get all teams statistics from database
+     * @return returns list of all modified teams statistics by mapper
+     */
     @GetMapping("/all")
     public List<TeamStatisticsDto> getAllTeamStatisticsFromDB() {
         return teamStatisticsService.getAllTeamStatistics();
     }
 
+    /**
+     * Get team statistics by team
+     * @param teamDTO - form of team data transfer object
+     * @return returns team statistics data
+     */
     @GetMapping
     public ResponseEntity<TeamStatistics> getPlayerStatisticsByPlayer(@RequestParam TeamDto teamDTO) {
 
@@ -45,11 +54,18 @@ public class TeamStatisticsController {
         return new ResponseEntity<>(teamStatistics, HttpStatusCode.valueOf(200));
     }
 
+    /**
+     * Add team statistics to database
+     * @param teamStatistics - statistics you need to add in database
+     * @param id - id of the team
+     * @return - returns team statistics
+     */
     @PostMapping
     public TeamStatistics addTeamStatistics(@RequestBody TeamStatistics teamStatistics, long id) {
         TeamDto teamDto = footballLeagueClient.getTeamDtoById(id);
         teamStatistics.setId(UUID.randomUUID());
         teamStatistics.setTeam(teamDto);
+        log.info("Add team statistics : {}", teamStatistics);
         return teamStatisticsService.saveTeamStatistics(teamStatistics);
     }
 }

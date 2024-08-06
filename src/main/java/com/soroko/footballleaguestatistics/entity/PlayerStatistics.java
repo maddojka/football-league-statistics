@@ -51,10 +51,6 @@ public class PlayerStatistics {
     @Column(name = "submissions")
     int submissions;
 
-   /* @PositiveOrZero(message = "Positive or zero value is required")
-    @Column(name = "player_id")
-    int player;*/
-
     @OneToMany
     @Indexed(unique = true)
     PlayerDto player;
