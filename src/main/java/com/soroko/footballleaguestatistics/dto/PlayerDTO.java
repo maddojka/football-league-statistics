@@ -1,4 +1,4 @@
-package com.soroko.footballleaguestatistics.entity;
+package com.soroko.footballleaguestatistics.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.soroko.footballleaguestatistics.repository;
 
 
-import com.soroko.footballleaguestatistics.entity.PlayerDTO;
+import com.soroko.footballleaguestatistics.dto.PlayerDTO;
 import com.soroko.footballleaguestatistics.entity.PlayerStatistics;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,7 @@
 package com.soroko.footballleaguestatistics.entity;
 
 
+import com.soroko.footballleaguestatistics.dto.PlayerDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;

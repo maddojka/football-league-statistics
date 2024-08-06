@@ -1,11 +1,9 @@
-package com.soroko.footballleaguestatistics.entity;
+package com.soroko.footballleaguestatistics.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-
-import java.time.LocalDateTime;
 
 /**
  * @author yuriy.soroko

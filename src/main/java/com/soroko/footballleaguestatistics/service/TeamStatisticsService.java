@@ -1,7 +1,7 @@
 package com.soroko.footballleaguestatistics.service;
 
 
-import com.soroko.footballleaguestatistics.entity.TeamDTO;
+import com.soroko.footballleaguestatistics.dto.TeamDTO;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
 import com.soroko.footballleaguestatistics.repository.TeamStatisticsRepository;
 import lombok.RequiredArgsConstructor;

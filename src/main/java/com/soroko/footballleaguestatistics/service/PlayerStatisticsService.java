@@ -1,8 +1,7 @@
 package com.soroko.footballleaguestatistics.service;
 
-import com.soroko.footballleaguestatistics.entity.PlayerDTO;
+import com.soroko.footballleaguestatistics.dto.PlayerDTO;
 import com.soroko.footballleaguestatistics.entity.PlayerStatistics;
-import com.soroko.footballleaguestatistics.entity.TeamStatistics;
 import com.soroko.footballleaguestatistics.repository.PlayerStatisticsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
