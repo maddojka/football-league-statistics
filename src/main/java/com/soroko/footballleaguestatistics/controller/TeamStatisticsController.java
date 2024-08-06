@@ -2,7 +2,7 @@ package com.soroko.footballleaguestatistics.controller;
 
 
 import com.soroko.footballleaguestatistics.controller.feign.FootballLeagueClient;
-import com.soroko.footballleaguestatistics.dto.TeamDTO;
+import com.soroko.footballleaguestatistics.dto.TeamDto;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
 import com.soroko.footballleaguestatistics.service.TeamStatisticsService;
 import lombok.AccessLevel;
@@ -33,7 +33,7 @@ public class TeamStatisticsController {
     }
 
     @GetMapping
-    public ResponseEntity<TeamStatistics> getPlayerStatisticsByPlayer(@RequestParam TeamDTO teamDTO) {
+    public ResponseEntity<TeamStatistics> getPlayerStatisticsByPlayer(@RequestParam TeamDto teamDTO) {
 
         var teamStatistics = teamStatisticsService.getTeamStatisticsByTeam(teamDTO);
         if (teamStatistics == null) {
@@ -46,7 +46,7 @@ public class TeamStatisticsController {
 
     @PostMapping
     public TeamStatistics addTeamStatistics(@RequestBody TeamStatistics teamStatistics, long id) {
-        TeamDTO teamDto = footballLeagueClient.getTeamDtoById(id);
+        TeamDto teamDto = footballLeagueClient.getTeamDtoById(id);
         teamStatistics.setId(UUID.randomUUID());
         teamStatistics.setTeam(teamDto);
         return teamStatisticsService.saveTeamStatistics(teamStatistics);

@@ -1,7 +1,7 @@
 package com.soroko.footballleaguestatistics.entity;
 
 
-import com.soroko.footballleaguestatistics.dto.PlayerDTO;
+import com.soroko.footballleaguestatistics.dto.PlayerDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -57,5 +57,5 @@ public class PlayerStatistics {
 
     @OneToMany
     @Indexed(unique = true)
-    PlayerDTO player;
+    PlayerDto player;
 }

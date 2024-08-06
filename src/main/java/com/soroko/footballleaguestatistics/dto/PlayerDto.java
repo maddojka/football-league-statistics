@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PlayerDTO {
+public class PlayerDto {
     String name;
     String surname;
     String position;

@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TeamDTO {
+public class TeamDto {
     String name;
     String city;
     String stadium;

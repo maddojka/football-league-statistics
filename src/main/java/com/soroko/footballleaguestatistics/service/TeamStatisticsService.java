@@ -1,7 +1,7 @@
 package com.soroko.footballleaguestatistics.service;
 
 
-import com.soroko.footballleaguestatistics.dto.TeamDTO;
+import com.soroko.footballleaguestatistics.dto.TeamDto;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
 import com.soroko.footballleaguestatistics.repository.TeamStatisticsRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class TeamStatisticsService {
         return teamStatisticsRepository.findAll();
     }
 
-    public TeamStatistics getTeamStatisticsByTeam(TeamDTO teamDTO) {
+    public TeamStatistics getTeamStatisticsByTeam(TeamDto teamDTO) {
         return teamStatisticsRepository.findByTeam(teamDTO);
     }
 
