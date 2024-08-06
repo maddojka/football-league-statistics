@@ -3,6 +3,7 @@ package com.soroko.footballleaguestatistics.controller;
 
 import com.soroko.footballleaguestatistics.controller.feign.FootballLeagueClient;
 import com.soroko.footballleaguestatistics.dto.TeamDto;
+import com.soroko.footballleaguestatistics.dto.TeamStatisticsDto;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
 import com.soroko.footballleaguestatistics.service.TeamStatisticsService;
 import lombok.AccessLevel;
@@ -28,7 +29,7 @@ public class TeamStatisticsController {
     FootballLeagueClient footballLeagueClient;
 
     @GetMapping("/all")
-    public List<TeamStatistics> getAllTeamStatisticsFromDB() {
+    public List<TeamStatisticsDto> getAllTeamStatisticsFromDB() {
         return teamStatisticsService.getAllTeamStatistics();
     }
 

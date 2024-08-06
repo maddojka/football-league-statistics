@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface PlayerStatisticsRepository extends MongoRepository<PlayerStatistics, UUID> {
 
     PlayerStatistics findByPlayer(PlayerDto playerDTO);
+
 }

@@ -1,7 +1,6 @@
 package com.soroko.footballleaguestatistics.dto;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.PositiveOrZero;
+import java.util.UUID;
 
 /**
  * @author yuriy.soroko
