@@ -19,10 +19,10 @@ public class PlayerStatisticsService {
     }
 
     public PlayerStatistics getPlayerStatisticsByPlayer(PlayerDTO playerDTO) {
-        return playerStatisticsRepository.findByPlayerDTO(playerDTO);
+        return playerStatisticsRepository.findByPlayer(playerDTO);
     }
 
     public PlayerStatistics savePlayerStatistics(PlayerStatistics playerStatistics) {
-       return playerStatisticsRepository.save(playerStatistics);
+        return playerStatisticsRepository.save(playerStatistics);
     }
 }

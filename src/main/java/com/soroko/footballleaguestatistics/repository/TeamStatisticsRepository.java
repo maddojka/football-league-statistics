@@ -11,5 +11,5 @@ import java.util.UUID;
 @Repository
 public interface TeamStatisticsRepository extends MongoRepository<TeamStatistics, UUID> {
 
-    TeamStatistics findByTeamDTO(TeamDTO teamDTO);
+    TeamStatistics findByTeam(TeamDTO teamDTO);
 }

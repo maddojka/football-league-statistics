@@ -1,8 +1,6 @@
 package com.soroko.footballleaguestatistics.service;
 
 
-import com.soroko.footballleaguestatistics.entity.PlayerDTO;
-import com.soroko.footballleaguestatistics.entity.PlayerStatistics;
 import com.soroko.footballleaguestatistics.entity.TeamDTO;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
 import com.soroko.footballleaguestatistics.repository.TeamStatisticsRepository;
@@ -15,14 +13,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TeamStatisticsService {
 
-    private TeamStatisticsRepository teamStatisticsRepository;
+    private final TeamStatisticsRepository teamStatisticsRepository;
 
     public List<TeamStatistics> getAllTeamStatistics() {
         return teamStatisticsRepository.findAll();
     }
 
     public TeamStatistics getTeamStatisticsByTeam(TeamDTO teamDTO) {
-        return teamStatisticsRepository.findByTeamDTO(teamDTO);
+        return teamStatisticsRepository.findByTeam(teamDTO);
     }
 
     public TeamStatistics saveTeamStatistics(TeamStatistics teamStatistics) {

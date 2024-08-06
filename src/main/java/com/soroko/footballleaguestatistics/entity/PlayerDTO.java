@@ -1,8 +1,19 @@
 package com.soroko.footballleaguestatistics.entity;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+
 /**
  * @author yuriy.soroko
  */
-public class PlayerDTO {
 
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class PlayerDTO {
+    String name;
+    String surname;
+    String position;
 }

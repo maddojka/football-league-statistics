@@ -5,8 +5,12 @@ import com.soroko.footballleaguestatistics.controller.feign.FootballLeagueClient
 import com.soroko.footballleaguestatistics.entity.PlayerStatistics;
 import com.soroko.footballleaguestatistics.entity.TeamDTO;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
+import com.soroko.footballleaguestatistics.repository.TeamStatisticsRepository;
 import com.soroko.footballleaguestatistics.service.TeamStatisticsService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,8 +23,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/teamstat")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class TeamStatisticsController {
-    TeamStatisticsService teamStatisticsService;
+
+    final TeamStatisticsService teamStatisticsService;
+
     FootballLeagueClient footballLeagueClient;
 
     @GetMapping("/all")
