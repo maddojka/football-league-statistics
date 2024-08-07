@@ -1,16 +1,14 @@
 package com.soroko.footballleaguestatistics.entity;
 
 
-import com.soroko.footballleaguestatistics.dto.PlayerDto;
+import com.soroko.footballleaguestatistics.dto.PlayerDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.PositiveOrZero;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +19,8 @@ import java.util.UUID;
 @Setter
 @Document
 @Table(name = "player_statistics")
+@AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PlayerStatistics {
 
@@ -53,5 +53,5 @@ public class PlayerStatistics {
 
     @OneToMany
     @Indexed(unique = true)
-    PlayerDto player;
+    PlayerDTO player;
 }

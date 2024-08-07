@@ -4,7 +4,7 @@ package com.soroko.footballleaguestatistics.dto;
  * @author yuriy.soroko
  */
 
-public record TeamStatisticsDto(
+public record TeamStatisticsDTO(
         String position,
         Integer matchesPlayed,
         Integer wins,

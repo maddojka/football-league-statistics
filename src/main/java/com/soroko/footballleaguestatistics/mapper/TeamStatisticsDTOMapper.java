@@ -1,6 +1,6 @@
 package com.soroko.footballleaguestatistics.mapper;
 
-import com.soroko.footballleaguestatistics.dto.TeamStatisticsDto;
+import com.soroko.footballleaguestatistics.dto.TeamStatisticsDTO;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.function.Function;
  * @author yuriy.soroko
  */
 @Service
-public class TeamStatisticsDtoMapper implements Function<TeamStatistics, TeamStatisticsDto> {
+public class TeamStatisticsDTOMapper implements Function<TeamStatistics, TeamStatisticsDTO> {
 
     /**
      * This method represents teamStatistics form to teamStatisticsDto form
@@ -18,8 +18,8 @@ public class TeamStatisticsDtoMapper implements Function<TeamStatistics, TeamSta
      * @return returns modified form
      */
     @Override
-    public TeamStatisticsDto apply(TeamStatistics teamStatistics) {
-        return new TeamStatisticsDto(
+    public TeamStatisticsDTO apply(TeamStatistics teamStatistics) {
+        return new TeamStatisticsDTO(
                 teamStatistics.getPosition(),
                 teamStatistics.getMatchesPlayed(),
                 teamStatistics.getWins(),

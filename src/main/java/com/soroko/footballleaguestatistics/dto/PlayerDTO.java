@@ -1,8 +1,6 @@
 package com.soroko.footballleaguestatistics.dto;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 /**
@@ -11,9 +9,11 @@ import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TeamDto {
+public class PlayerDTO {
     String name;
-    String city;
-    String stadium;
+    String surname;
+    String position;
 }

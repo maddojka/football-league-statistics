@@ -3,7 +3,7 @@ package com.soroko.footballleaguestatistics.dto;
 /**
  * @author yuriy.soroko
  */
-public record PlayerStatisticsDto(
+public record PlayerStatisticsDTO(
         Integer matchesPlayed,
         Integer goalsScored,
         Integer yellowCards,

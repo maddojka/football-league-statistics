@@ -2,8 +2,8 @@ package com.soroko.footballleaguestatistics.controller;
 
 
 import com.soroko.footballleaguestatistics.controller.feign.FootballLeagueClient;
-import com.soroko.footballleaguestatistics.dto.PlayerDto;
-import com.soroko.footballleaguestatistics.dto.PlayerStatisticsDto;
+import com.soroko.footballleaguestatistics.dto.PlayerDTO;
+import com.soroko.footballleaguestatistics.dto.PlayerStatisticsDTO;
 import com.soroko.footballleaguestatistics.entity.PlayerStatistics;
 import com.soroko.footballleaguestatistics.service.PlayerStatisticsService;
 import lombok.AccessLevel;
@@ -32,7 +32,7 @@ public class PlayerStatisticsController {
      * @return returns list of all modified players statistics by mapper
      */
     @GetMapping("/all")
-    public List<PlayerStatisticsDto> getAllPlayerStatisticsFromDB() {
+    public List<PlayerStatisticsDTO> getAllPlayerStatisticsFromDB() {
         return playerStatisticsService.getAllPlayerStatistics();
     }
 
@@ -42,7 +42,7 @@ public class PlayerStatisticsController {
      * @return returns player statistics data
      */
     @GetMapping
-    public ResponseEntity<PlayerStatistics> getPlayerStatisticsByPlayer(@RequestParam PlayerDto playerDTO) {
+    public ResponseEntity<PlayerStatistics> getPlayerStatisticsByPlayer(@RequestParam PlayerDTO playerDTO) {
         var playerStatistics = playerStatisticsService.getPlayerStatisticsByPlayer(playerDTO);
         if (playerStatistics == null) {
             return ResponseEntity
@@ -59,8 +59,8 @@ public class PlayerStatisticsController {
      * @return - returns player statistics
      */
     @PostMapping
-    public PlayerStatistics addPlayerStatistics(@RequestBody PlayerStatistics playerStatistics, long id) {
-        PlayerDto playerDTO = footballLeagueClient.getPlayerDtoById(id);
+    public PlayerStatistics addPlayerStatistics(@RequestBody PlayerStatistics playerStatistics, Long id) {
+        PlayerDTO playerDTO = footballLeagueClient.getPlayerDtoById(id);
         playerStatistics.setId(UUID.randomUUID());
         playerStatistics.setPlayer(playerDTO);
         log.info("Add player statistics : {}", playerStatistics);

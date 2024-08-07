@@ -2,8 +2,8 @@ package com.soroko.footballleaguestatistics.controller;
 
 
 import com.soroko.footballleaguestatistics.controller.feign.FootballLeagueClient;
-import com.soroko.footballleaguestatistics.dto.TeamDto;
-import com.soroko.footballleaguestatistics.dto.TeamStatisticsDto;
+import com.soroko.footballleaguestatistics.dto.TeamDTO;
+import com.soroko.footballleaguestatistics.dto.TeamStatisticsDTO;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
 import com.soroko.footballleaguestatistics.service.TeamStatisticsService;
 import lombok.AccessLevel;
@@ -33,7 +33,7 @@ public class TeamStatisticsController {
      * @return returns list of all modified teams statistics by mapper
      */
     @GetMapping("/all")
-    public List<TeamStatisticsDto> getAllTeamStatisticsFromDB() {
+    public List<TeamStatisticsDTO> getAllTeamStatisticsFromDB() {
         return teamStatisticsService.getAllTeamStatistics();
     }
 
@@ -43,7 +43,7 @@ public class TeamStatisticsController {
      * @return returns team statistics data
      */
     @GetMapping
-    public ResponseEntity<TeamStatistics> getPlayerStatisticsByPlayer(@RequestParam TeamDto teamDTO) {
+    public ResponseEntity<TeamStatistics> getPlayerStatisticsByPlayer(@RequestParam TeamDTO teamDTO) {
 
         var teamStatistics = teamStatisticsService.getTeamStatisticsByTeam(teamDTO);
         if (teamStatistics == null) {
@@ -61,8 +61,8 @@ public class TeamStatisticsController {
      * @return - returns team statistics
      */
     @PostMapping
-    public TeamStatistics addTeamStatistics(@RequestBody TeamStatistics teamStatistics, long id) {
-        TeamDto teamDto = footballLeagueClient.getTeamDtoById(id);
+    public TeamStatistics addTeamStatistics(@RequestBody TeamStatistics teamStatistics, Long id) {
+        TeamDTO teamDto = footballLeagueClient.getTeamDtoById(id);
         teamStatistics.setId(UUID.randomUUID());
         teamStatistics.setTeam(teamDto);
         log.info("Add team statistics : {}", teamStatistics);

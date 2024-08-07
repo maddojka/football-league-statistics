@@ -1,10 +1,10 @@
 package com.soroko.footballleaguestatistics.service;
 
 
-import com.soroko.footballleaguestatistics.dto.TeamDto;
-import com.soroko.footballleaguestatistics.dto.TeamStatisticsDto;
+import com.soroko.footballleaguestatistics.dto.TeamDTO;
+import com.soroko.footballleaguestatistics.dto.TeamStatisticsDTO;
 import com.soroko.footballleaguestatistics.entity.TeamStatistics;
-import com.soroko.footballleaguestatistics.mapper.TeamStatisticsDtoMapper;
+import com.soroko.footballleaguestatistics.mapper.TeamStatisticsDTOMapper;
 import com.soroko.footballleaguestatistics.repository.TeamStatisticsRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -20,16 +20,16 @@ import java.util.stream.Collectors;
 public class TeamStatisticsService {
 
     final TeamStatisticsRepository teamStatisticsRepository;
-    private final TeamStatisticsDtoMapper teamStatisticsDtoMapper;
+    private final TeamStatisticsDTOMapper teamStatisticsDtoMapper;
 
-    public List<TeamStatisticsDto> getAllTeamStatistics() {
+    public List<TeamStatisticsDTO> getAllTeamStatistics() {
         return teamStatisticsRepository.findAll()
                 .stream()
                 .map(teamStatisticsDtoMapper)
                 .collect(Collectors.toList());
     }
 
-    public TeamStatistics getTeamStatisticsByTeam(TeamDto teamDTO) {
+    public TeamStatistics getTeamStatisticsByTeam(TeamDTO teamDTO) {
         return teamStatisticsRepository.findByTeam(teamDTO);
     }
 
