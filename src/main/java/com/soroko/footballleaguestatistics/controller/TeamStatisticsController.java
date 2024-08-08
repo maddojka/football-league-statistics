@@ -30,6 +30,7 @@ public class TeamStatisticsController {
 
     /**
      * Get all teams statistics from database
+     *
      * @return returns list of all modified teams statistics by mapper
      */
     @GetMapping("/all")
@@ -39,6 +40,7 @@ public class TeamStatisticsController {
 
     /**
      * Get team statistics by team
+     *
      * @param teamDTO - form of team data transfer object
      * @return returns team statistics data
      */
@@ -56,8 +58,9 @@ public class TeamStatisticsController {
 
     /**
      * Add team statistics to database
+     *
      * @param teamStatistics - statistics you need to add in database
-     * @param id - id of the team
+     * @param id             - id of the team
      * @return - returns team statistics
      */
     @PostMapping
@@ -67,5 +70,15 @@ public class TeamStatisticsController {
         teamStatistics.setTeam(teamDto);
         log.info("Add team statistics : {}", teamStatistics);
         return teamStatisticsService.saveTeamStatistics(teamStatistics);
+    }
+
+    /**
+     * This method sums wins of all teams
+     * @return sum of all wins
+     */
+    @GetMapping("/allwins")
+    public long countAmountOfWins() {
+        return teamStatisticsService.getAllTeamStatistics()
+                .stream().mapToInt(x -> x.wins()).sum();
     }
 }

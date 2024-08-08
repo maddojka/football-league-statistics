@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -29,6 +30,7 @@ public class PlayerStatisticsController {
 
     /**
      * Get all players statistics from database
+     *
      * @return returns list of all modified players statistics by mapper
      */
     @GetMapping("/all")
@@ -38,6 +40,7 @@ public class PlayerStatisticsController {
 
     /**
      * Get player statistics by player
+     *
      * @param playerDTO - form of player data transfer object
      * @return returns player statistics data
      */
@@ -54,8 +57,9 @@ public class PlayerStatisticsController {
 
     /**
      * Add player statistics to database
+     *
      * @param playerStatistics - statistics you need to add in database
-     * @param id - id of the player
+     * @param id               - id of the player
      * @return - returns player statistics
      */
     @PostMapping
@@ -65,5 +69,18 @@ public class PlayerStatisticsController {
         playerStatistics.setPlayer(playerDTO);
         log.info("Add player statistics : {}", playerStatistics);
         return playerStatisticsService.savePlayerStatistics(playerStatistics);
+    }
+
+    /**
+     * This method filter players by played matches
+     * @param matchesPlayed - number of matches to filter
+     * @return list of players
+     */
+    @GetMapping("/filterbymatches")
+    public List<PlayerStatisticsDTO> getPlayerStatisticsByPlayerId(@RequestParam int matchesPlayed) {
+        return playerStatisticsService
+                .getAllPlayerStatistics()
+                .stream().filter(x -> x.matchesPlayed() > matchesPlayed)
+                .collect(Collectors.toList());
     }
 }
